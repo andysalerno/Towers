@@ -34,7 +34,7 @@ class GameRunner:
         self.game_state = GameplayState(levels, WORLD_WIDTH, WORLD_HEIGHT, 100, 100)
         # game_state = MainMenu()
 
-        self.game_state.build_tower(Tower((8,8),10000000,1,1,0))
+        self.game_state.build_tower(Tower((1,1),10000000,.2,1,0))
 
         self.network = Network()
         self.print_gametick = print_gametick
