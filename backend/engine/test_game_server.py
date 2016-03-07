@@ -24,17 +24,17 @@ class GameRunner:
 
     def __init__(self, print_gametick=False, print_on_receive=False):
 
-        self.level_creeps_spawn_timers = [1]
+        self.level_creeps_spawn_timers = [1,4,4,4]
         self.spawnCreeps = []
 
-        for i in range(0, 1):
+        for i in range(0, 4):
             self.spawnCreeps.append(Creep.factory("Default",i))
 
         levels = Levels(self.level_creeps_spawn_timers, self.spawnCreeps);
         self.game_state = GameplayState(levels, WORLD_WIDTH, WORLD_HEIGHT, 100, 100)
         # game_state = MainMenu()
 
-        self.game_state.build_tower(Tower((1,1),10000000,.2,1,0))
+        self.game_state.build_tower(Tower((1,1),10000000,.5,1,0))
 
         self.network = Network()
         self.print_gametick = print_gametick

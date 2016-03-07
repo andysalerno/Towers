@@ -24,7 +24,6 @@ class GameplayState(GameState):
         self.lives = lives;
         self.gold = gold; # starting gold
         self.counter = 0;
-
         #bill.kill(yanming);
 
 
@@ -44,19 +43,27 @@ class GameplayState(GameState):
         print(str(item.id) for item in self.all_creeps)
 
         for creep in self.all_creeps:
-            cUpdate = creep.update(bestPath, dt)
-            creepLoc.update(cUpdate[LOCATION_INDEX])
-            creepProgress.update(cUpdate[PROGRESS_INDEX])
+            cUpdate = creep.update(bestPath, dt, self)
+            if cUpdate!=None:
+                creepLoc.update(cUpdate[LOCATION_INDEX])
+                creepProgress.update(cUpdate[PROGRESS_INDEX])
 
         #Updates the attacks made by the towers on the creeps
         for tower in self.all_towers:
-            attacksMade.update({tower.id : tower.update(dt, self.all_creeps)})
+            attacksMade.update({tower.id : tower.update(dt, self.all_creeps, self)})
+
+
+        enemies = 0;
+
+        for creep in self.all_creeps:
+            if(creep.live):
+                enemies +=1
 
         #Dictionary of player stats
         playerState = {
             'lives' : self.lives,
             'gold' : self.gold,
-            'enemiesLeft' : len(self.all_creeps)
+            'enemiesLeft' : enemies
         }
 
         return playerState, creepLoc, creepProgress, attacksMade # Giant tuple of jsons
