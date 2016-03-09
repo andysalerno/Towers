@@ -1,6 +1,7 @@
 """This file acts as the main entrance point to the server."""
 import time
 from json import dumps
+import ast
 
 from game_pieces.creep import Creep
 from engine.clock import Clock
@@ -61,6 +62,20 @@ class GameRunner:
             pass
 
     def game_loop(self, dt):
+        message = self.network.receive()
+        if message:
+            # (x,y), 1000, 1, 3, towerID
+
+            import pdb; pdb.set_trace()
+            if not isinstance(message, str):
+                ast.literal_eval(message)
+                import pdb; pdb.set_trace()
+                if message['type'] == towerRequest:
+
+                    import pdb; pdb.set_trace()
+                    self.game_state.build_tower((message['x'], message['y']),
+                        1000, 1, 3, message['towerID'])
+
         tupleReturned = self.game_state.update(dt, [])
 
         # playerState, creepLoc, creepProgress, attacksMade
@@ -73,6 +88,3 @@ class GameRunner:
         # if self.print_gametick:
         #     print("it's been " + str(dt * 1000) + " ms since last frame")
 
-        # message = self.network.receive()
-        # if message is not False and self.print_on_receive:
-        #     print("gameloop got message: {}".format(message))

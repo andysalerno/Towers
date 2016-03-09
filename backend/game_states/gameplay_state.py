@@ -82,5 +82,6 @@ class GameplayState(GameState):
 
     def build_tower(self, tower):
         #rocket science
+        import pdb; pdb.set_trace()
         if self.world.build_tower(tower.loc[X_INDEX], tower.loc[Y_INDEX]):
             self.all_towers.append(tower)

@@ -12,7 +12,7 @@ from multiprocessing import Process
 from ws_server.gameloop_client_identifier import GAMELOOP_CLIENT_IDENTIFIER
 from autobahn.asyncio.websocket import WebSocketServerProtocol, \
     WebSocketServerFactory
-
+# from game_states.gameplay_state import 
 
 connected = []
 
@@ -101,6 +101,7 @@ class MyServerProtocol(WebSocketServerProtocol):
             global gameloop_client
             gameloop_client = self
             print("game engine client regisetered!!")
+            print(str(gameloop_client))
 
         message = obj_from_json(as_string)
         if message:
@@ -109,6 +110,9 @@ class MyServerProtocol(WebSocketServerProtocol):
                 self.broadcast_message(payload)
             elif message["type"] == "gameUpdate":
                 self.broadcast_message(payload)
+            elif message["type"] == "towerRequest":
+                global gameloop_client
+                gameloop_client.sendMessage(utf(as_string), False)
 
     def broadcast_message(self, msg):
         assert len(connected) > 0
