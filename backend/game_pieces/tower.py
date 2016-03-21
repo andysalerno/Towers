@@ -13,7 +13,7 @@ class Tower:
         self.id = id; # we need the towers to know where they are in the array of towers.
         self.tower_type = tower_type # TODO, make tower_type control other values
 
-        self.damage = 10; # PLACE HOLDER DAMAGE VALUE: TO BE REPLACED
+        self.damage = 0; # PLACE HOLDER DAMAGE VALUE: TO BE REPLACED
         self.time_since_last_fire = 0
 
     def update(self, dt, living_creeps, gameState):

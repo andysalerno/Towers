@@ -28,12 +28,14 @@ class Creep:
     # We generate a json for movement. Passed up to the gameplay_state
     def update(self, path, dt, gameState):
         if self.live:
-         #   print(self.cellPos)
+            print(self.loc)
+            print(self.cellPos)
             direction = (self.dest(path)[0]-self.loc[0], self.dest(path)[1]-self.loc[1])    #figure out in-cell movement vector
             self.cellPos = (self.cellPos[0] + (self.speed*direction[0]), self.cellPos[1] + (self.speed*direction[1])) # move position in cell
-         #   print(self.dest(path))
-         #   print(direction)
-         #   print(self.cellPos)
+            print(self.dest(path))
+            print(direction)
+            print(self.cellPos)
+            print("###############");
             edgeConf = engine.util.edge(self.cellPos , direction) #check if at edge and new position
 
             if edgeConf[0]: # returns true if creep should move

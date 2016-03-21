@@ -39,29 +39,29 @@ class GameRunner:
         self.print_gametick = print_gametick
         self.print_on_receive = print_on_receive
 
-        self.level_creeps_spawn_timers = []
+        self.level_creeps_spawn_timers = [20]
         self.spawnCreeps = []
-        initialSpawn = 0
+        #initialSpawn = 20
 
         # 3 sets of spawns
         # Separated by initialSpawn time.
-        for k in range(0,5):
-            self.level_creeps_spawn_timers.append(initialSpawn)
-            initialSpawn += 0.3
+        #for k in range(0,5):
+            #self.level_creeps_spawn_timers.append(initialSpawn)
+            #initialSpawn += 0.3
 
-        initialSpawn += 3
+        #initialSpawn += 3
 
-        for k in range(0,10):
-            self.level_creeps_spawn_timers.append(initialSpawn)
-            initialSpawn += 0.3
+        #for k in range(0,10):
+           # self.level_creeps_spawn_timers.append(initialSpawn)
+           # initialSpawn += 0.3
 
-        initialSpawn +=3
+       # initialSpawn +=3
 
-        for k in range(0,15):
-            self.level_creeps_spawn_timers.append(initialSpawn)
-            initialSpawn += 0.3
+        #for k in range(0,15):
+           # self.level_creeps_spawn_timers.append(initialSpawn)
+           # initialSpawn += 0.3
 
-        for i in range (0,30):
+        for i in range (0,1):
             self.spawnCreeps.append(Creep.factory("Default",i))
 
         levels = Levels(self.level_creeps_spawn_timers, self.spawnCreeps);
